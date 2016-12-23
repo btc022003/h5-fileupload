@@ -35,23 +35,32 @@ app.use(express.static('./public'))
 //})
 // 上传文件数据接口
 app.post('/common/api/file_upload',(req,res)=>{
-    var imgData = req.body.imgData
+
+    var imgDataArr = req.body.imgData
+    //console.log(req.body)
     //为了防止文件同名,使用时间戳加随机数的方式命名文件
-    var fileName = Date.now().toString()+Math.ceil(Math.random()*10000)+".jpg"
-    //传递的数据进行替换
-    var base64Data = imgData.replace(/^data:image\/\w+;base64,/,"")
-    var dataBuffer = new Buffer(base64Data,'base64')
-    fs.writeFile('./public/upload/'+fileName,dataBuffer,err=>{
-        if(err){
-            console.log(err)
-        }
-        else{
-            res.json({
-                status:'y',
-                msg:'保存成功',
-                data:fileName
+    var imgList = []
+    imgDataArr.split('@').forEach(imgData=>{
+        if(imgData!=""){
+            var fileName = Date.now().toString()+Math.ceil(Math.random()*10000)+".jpg"
+            imgList.push("/upload/"+fileName)
+            //传递的数据进行替换
+            var base64Data = imgData.replace(/^data:image\/\w+;base64,/,"")
+            var dataBuffer = new Buffer(base64Data,'base64')
+            fs.writeFile('./public/upload/'+fileName,dataBuffer,err=>{
+                if(err){
+                    console.log(err)
+                }
+                else{
+                }
             })
+
         }
+    })
+    res.json({
+        status:'y',
+        msg:'保存成功',
+        data:imgList.join(',')
     })
 })
 
