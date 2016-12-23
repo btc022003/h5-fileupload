@@ -1,0 +1,26 @@
+{
+  "name": "h5-fileupload",
+  "version": "1.0.0",
+  "description": "html5上传图片带预览",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html5",
+    "jquery",
+    "upload",
+    "nodejs"
+  ],
+  "author": "arivin",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}
