@@ -9,5 +9,6 @@
 
 运行方式  
 ```bash
+npm init #安装依赖项
 gulp
 ```

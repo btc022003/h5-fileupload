@@ -1,6 +1,8 @@
 $.fn.extend(
     {
         'h5Upload':function(){
+            var imgList = [] //保存图片的数据
+
             //点击打开文件夹按钮 开始选择文件
             this.find('#fileOpenFolder').click(function(){
                 $('#fileUpload').click()
@@ -12,6 +14,7 @@ $.fn.extend(
                     console.log('请选择要上传的图片文件')
                     return false
                 }
+                //把多张图片用@分割上传服务器端
                 var data = ''
                 that.find('img').each(function(){
                     data += $(this).attr("src")+"@"
@@ -30,7 +33,7 @@ $.fn.extend(
                 })
             })
 
-            var imgList = []
+
             // 添加删除图片效果,点击删除按钮后删除指定位置的图片
             $('#h5ImgUploadList').on('click','.del',function(){
                 var currentImgIndex = $('#h5ImgUploadList .del').index(this)
@@ -41,34 +44,9 @@ $.fn.extend(
             $('#fileUpload').change(function(){
                 imgList.push(this.files[0])
                 initImgHtml()
-                // 通过FileReader读取文件
-                //var reader = new FileReader()
-                //reader.readAsDataURL(this.files[0])
-                //reader.onload = function(){
-                //    //$('#img').attr("src",this.result)
-                //    var $img = $('<li><img><i class="del fa fa-remove"></i></li>')
-                //    $img.find('img').attr('src',this.result)
-                //    $('#h5ImgUploadList').append($img)
-                //    $img.load(function(){
-                //        console.dir(this)
-                //    })
-                //    $.ajax({
-                //        method:'post',
-                //        data:{imgData:this.result},
-                //        url:'/common/api/file_upload',
-                //        success:function(res){
-                //            console.dir(res)
-                //        },
-                //        error:function(err){
-                //            console.dir(err)
-                //        }
-                //    })
-                //}
             })
 
-            //function doAlert(msg){
-            //    alert(msg)
-            //}
+            //图片选择之后渲染页面内容
             function initImgHtml(){
                 $('#h5ImgUploadList').html('')
                 imgList.forEach(function(imgData){
@@ -84,7 +62,6 @@ $.fn.extend(
                     }
                 })
             }
-
         }
     }
 )
