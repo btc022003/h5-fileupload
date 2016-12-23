@@ -4,6 +4,9 @@ var nodemon = require('gulp-nodemon')
 
 var browserSync = require('browser-sync').create()
 
+var concat = require('gulp-concat'),
+    uglify = require('gulp-uglify')
+
 //配置nodemon监听js、html文件的改变 重启node服务器
 gulp.task('nodemon',function(){
     nodemon({
@@ -20,4 +23,12 @@ gulp.task('nodemon',function(){
         })
     })
 })
+
+gulp.task('dist',function(){
+    gulp.src(['./public/js/*.js'])
+        .pipe(concat('dist.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/dist'))
+})
+
 gulp.task('default',['nodemon'])

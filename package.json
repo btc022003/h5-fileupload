@@ -17,7 +17,9 @@
   "devDependencies": {
     "browser-sync": "^2.18.5",
     "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.2.1"
+    "gulp-concat": "^2.6.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-uglify": "^2.0.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
