@@ -6,6 +6,19 @@ var fs = require('fs')
 //终端logger
 app.use(morgan('dev'))
 
+// 判断上传目录是否存在
+fs.stat('./public/upload',(err,stat)=>{
+    if(err){
+        fs.mkdir('./public/upload',e=>{
+            //console.log(e)
+            console.log('上传目录创建成功')
+        })
+    }
+    else{
+        console.log('上传目录已存在')
+    }
+})
+
 //引用body-parser插件
 app.use(bodyParser.urlencoded(
     {
